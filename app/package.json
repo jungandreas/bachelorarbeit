@@ -1,0 +1,22 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "debug": "~2.6.9",
+    "es6-promise": "^4.2.6",
+    "express": "^4.16.4",
+    "http-errors": "~1.6.2",
+    "isomorphic-fetch": "^2.2.1",
+    "jade": "^1.11.0",
+    "morgan": "^1.9.1",
+    "node-fetch": "^2.6.0",
+    "node-gzip": "^1.1.2",
+    "pug": "^2.0.3",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

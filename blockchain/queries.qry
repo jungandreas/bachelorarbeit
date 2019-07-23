@@ -1,0 +1,24 @@
+/**
+ * New query file
+ */
+
+query selectStepsByUser {
+  description: "Select steps based on their user"
+  statement:
+      SELECT org.bachelorarbeit.Steps
+          WHERE (user == _$inputValue)
+}
+
+query selectUserByUserIdActivityTracker {
+  description: "Select user based on his userid of the activity tracker"
+  statement:
+      SELECT org.bachelorarbeit.User
+          WHERE (userIdActivityTracker == _$inputValue)
+}
+
+query selectUserByUserId {
+  description: "Select user based on his userid of the activity tracker"
+  statement:
+      SELECT org.bachelorarbeit.User
+          WHERE (userId == _$inputValue)
+}
