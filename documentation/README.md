@@ -4,6 +4,7 @@ It shows you the full documentation of the application and the Blockchain.
 ## Blockchain
 The domain model of the data in the Blockchain is:<br>
 ![Domain Model](images/domain_model.png)
+
 For the different Transactions it is defined what they need to fulfil the task.
 To update steps:<br>
 ![UpdateSteps](images/transaction_updateSteps.png)
@@ -33,3 +34,5 @@ To decide the manufacturer the application follows: <br>
 ![manufacturerChoice](images/refreshBlockchain.jpg)
 
 It now can follow the [Fitbit procedure](images/fitbit.jpg) or the [Polar procedures](images/polar.jpg).
+
+For the return format and the structure needed to make request to the application is a [.yaml File](doku_API_Application.yaml) defined.
