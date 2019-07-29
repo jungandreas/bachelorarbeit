@@ -18,7 +18,7 @@ To change the manufacturer of the Activity Tracker:<br>
 ![UpdateActivityTracker](images/transaction_updateActivityTracker.png)
 
 To add or remove with who I share my data:<br>
-![UpdateSteps](images/transaction_addSharedWith)
+![SharedWith](images/transaction_addSharedWith.png)
 
 To document the API there is a [.yaml file](doku_API_Blockchain.yaml).
 
