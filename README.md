@@ -1,4 +1,4 @@
-  # Bachelor Thesis Blockchain for Health Data
+# Bachelor Thesis Blockchain for Health Data
 Improve the interoperability in terms of technic to compare steps from activity trackers of different manufacturers
 
 ## Introduction
@@ -6,6 +6,8 @@ This are all the important files for the application, which is the result of the
 With this files and the instructions in the Instruction section, it should be possible to install the Blockchain
 
 ## Instructions
+All this is tested with a Linux Ubuntu 18.04.2 LTS normal installation.
+
 1. Get the date from git
 	1. install git
 	```
@@ -85,6 +87,9 @@ With this files and the instructions in the Instruction section, it should be po
  		7. copy the user id's into the [script.js](/app/public/javascript/script.js) file
  		8. go to http://localhost:3001/data
  8. you should now have a working application
+
+## Documentation
+The documentaion is in the directory [documentation](/documentation)
 
 
 ## Participants

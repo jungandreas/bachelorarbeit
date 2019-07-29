@@ -1,0 +1,242 @@
+swagger: "2.0"
+info:
+  description: 'A Prototype API for the bachelor thesis "Gesundheitsdaten in einer Blockchain". This is the API from the back-end application'
+  version: "0.0.25"
+  title: "Gesundheitsdaten in einer Blockchain"
+  contact:
+    email: "andreas.jung@ntb.ch"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: 'localhost:3001'
+tags:
+  - name: 'Blockchain'
+    description: 'everything what connects the application with the Blockchain'
+  - name: 'Fitbit'
+    description: 'to test how to get the Data from Fitbit'
+  - name: 'Polar'
+    description: 'to test how to get the Data from Polar'
+paths:
+  '/data/steps':
+    get:
+      tags:
+        - 'Blockchain'
+      summary: 'Get steps for ChartJs Line Diagram'
+      description: 'Get an Object with all the Required Information for a ChartJs Line Diagram'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'userIdActivityTracker'
+          in: 'query'
+          type: 'string'
+          description: 'The user Id which is received from the activity Tracker API'
+          required: true
+      responses:
+        200:
+          description: 'Successful Operation'
+          schema:
+            $ref: '#/definitions/stepsForGraphic'
+        500:
+          description: 'Something went wrong with the Server or the Blockchain'
+
+  '/data/refreshBlockchain':
+    get:
+      tags:
+        - 'Blockchain'
+      summary: 'Refresh the Blockchain'
+      description: 'Refreshes the Blockchain with all the new Information from the Tracker API and returns an Object with all the Required Information for a ChartJs Line Diagram'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'userIdActivityTracker'
+          in: 'query'
+          type: 'string'
+          description: 'The user Id which is received from the activity Tracker API'
+          required: true
+      responses:
+        200:
+          description: 'Successful Operation'
+          schema:
+            $ref: '#/definitions/stepsForGraphic'
+        500:
+          description: 'Something went wrong with the Server or the Blockchain'
+          
+  '/data/users':
+    get:
+      tags:
+        - 'Blockchain'
+      summary: 'Get the User Informations'
+      description: 'Gives the User Information from the Blockchain back'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'userIdActivityTracker'
+          in: 'query'
+          type: 'string'
+          description: 'The user Id which is received from the activity Tracker API'
+          required: true
+      responses:
+        200:
+          description: 'Successful Operation'
+          schema:
+            $ref: '#/definitions/user'
+        500:
+          description: 'Something went wrong with the Server or the Blockchain'
+
+  '/polar/activity':
+    post:
+      tags:
+        - 'Polar'
+      summary: 'Get only the newest activity per Date from Polar'
+      description: 'Get all activities from Polar and sends only the newest per date back'
+      produces:
+        - 'application/json'
+      consumes:
+        - 'application/json'
+      parameters:
+        - name: 'body'
+          in: 'body'
+          schema:
+            $ref: '#/definitions/polarInformations'
+          required: true
+      deprecated: true
+      responses:
+        200:
+          description: 'Successful Operation'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/activityPolar'
+        
+              
+definitions:
+  stepsForGraphic:
+    description: 'An Object with all the needed Labels and Data for an ChartJs Line diagram'
+    type: object
+    required: 
+      - 'ownData'
+      - 'labels'
+      - 'otherUsers'
+    properties:
+      ownData:
+        type: 'array'
+        items:
+          $ref: '#/definitions/pointForGraphic'
+      labels:
+        type: 'array'
+        items:
+          type: 'string'
+      otherUsers:
+        type: 'array'
+        items:
+          $ref: '#/definitions/otherUsers'
+      
+  pointForGraphic:
+    description: 'the points for the chartJs Line Diagram'
+    type: object
+    required:
+      - 'x'
+      - 'y'
+    properties:
+      x:
+        description: 'the Date of the steps as ISO formated String'
+        type: 'string'
+      y:
+        type: 'integer'
+        format: 'int32'
+        minimum: 0
+        multipleOf: 1
+        
+  otherUsers:
+    description: 'Contains the Username and the Data of the Users which shares Data with the Requested User'
+    type: object
+    required: 
+      - 'userName'
+      - 'data'
+    properties:
+      userName:
+        type: 'string'
+      data:
+        type: 'array'
+        items:
+          $ref: '#/definitions/pointForGraphic'
+          
+  user:
+    description: 'User from the Blockchain'
+    type: 'object'
+    required: 
+      - '$class'
+      - 'userId'
+      - 'firstName'
+      - 'lastName'
+      - 'email'
+    properties:
+      $class:
+        type: 'string'
+      userId:
+        type: 'string'
+        pattern: '[0-9]+'
+      firstName:
+        type: 'string'
+      lastName:
+        type: 'string'
+      email:
+        type: 'string'
+        pattern: 'email'
+      userIdActivityTracker:
+        type: 'string'
+      accessToken:
+        type: 'string'
+      refreshToken:
+        type: 'string'
+      sharedWith:
+        type: 'array'
+        items:
+          type: 'string'
+          pattern: 'resource:org.bachelorarbeit.User#[0-9]+'
+      activityTracker:
+        type: 'string'
+        enum: [Fitbit, Polar]
+  
+  activityPolar:
+    description: 'The Activity Summary which is received from Polar'
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      polar-user:
+        type: 'string'
+      transaction-id:
+        type: 'integer'
+        format: 'int64'
+      date:
+        type: 'string'
+        pattern: 'date'
+      created:
+        type: 'string'
+        pattern: 'date-time'
+      calories:
+        type: 'integer'
+        format: 'int32'
+      active-caloires:
+        type: 'integer'
+        format: 'int32'
+      duration:
+        type: 'string'
+      active-steps:
+        type: 'integer'
+        format: 'int32'
+
+  polarInformations:
+    description: 'an Object which contains the Information to make a request to the Polar API'
+    type: 'object'
+    required:
+      - 'accessToken'
+      - 'userId'
+    properties:
+      accessToken:
+        type: 'string'
+      userId:
+        type: 'integer'
+        format: 'int64'

@@ -1,0 +1,296 @@
+swagger: "2.0"
+info:
+  description: 'A Prototype API for the bachelor thesis "Gesundheitsdaten in einer Blockchain" this is the Blockchian API'
+  version: "0.0.25"
+  title: "Gesundheitsdaten in einer Blockchain"
+  contact:
+    email: "janick.hartmann@ntb.ch"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: 'localhost:3000'
+basePath: '/api'
+tags:
+  - name: 'Blockchain'
+    description: 'the API provided from the Blockchain'
+paths:
+  '/SetupDemo':
+    post:
+      tags:
+        - 'Blockchain'
+      summary: 'Set up a demo to use'
+      description: 'creates two users and for each user one new step entry'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Successful Operation'
+          schema:
+            $ref: '#/definitions/setupDemo'
+
+  '/User':
+    get:
+      tags:
+        - 'Blockchain'
+      summary: 'Get all users from the Blockchain'
+      description: 'Return all users from the Blockchian, because it is a Prototype this function is not restricted.'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Successful Operation'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/user'
+            example:
+              - $class: 'org.bachelorarbeit.User'
+                userId: '1'
+                firstName: 'Hans'
+                lastName: 'Muster'
+                email: 'hans.muster@example.com'
+                userIdActivityTracker: '5X2CL3'
+                accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOoPymkQ8SjciLCJzdWIiOiI1WDJLTDQiLCJpc3MiOiJGaXRiZkQipoCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZO89J3YWN0IHdwcm8iLCJle.HAiOjE1NjEwNjY4OTksImlhdCI6MTU2MTAzODA5OX0.IkeuJt2ksOlJss3UXb2-KCJh5m7-iTQaWh6NH9E1mUs'
+                refreshToken: '3896fb8abc20609ur0bf5dcfa6a3e6bc2468a8707a1d171358cdde55F284dsa04'
+                sharedWith:
+                  - 'resource:org.bachelorarbeit.User#37'
+                  - 'resource:org.bachelorarbeit.User#89'
+                activityTracker: Fitbit
+              - $class: 'org.bachelorarbeit.User'
+                userId: '2'
+                firstName: 'Heiri'
+                lastName: 'Meier'
+                email: 'heiri.meier@example.com'
+                userIdActivityTracker: '43784846'
+                accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOoPymkQ8SjciLCJzdWIiOiI1WDJLTDQiLCJpc3MiOiJGaXRiZkQipoCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZO89J3YWN0IHdwcm8iLCJle.HAiOjE1NjEwNjY4OTksImlhdCI6MTU2MTAzODA5OX0.IkeuJt2ksOlJss3UXb2-KCJh5m7-iTQaWh6NH9E1mUs'
+                refreshToken: '3896fb8abc20609ur0bf5dcfa6a3e6bc2468a8707a1d171358cdde55F284dsa04'
+                sharedWith:
+                  - 'resource:org.bachelorarbeit.User#89'
+                  - 'resource:org.bachelorarbeit.User#71'
+                activityTracker: Fitbit
+              
+  '/queries/selectUserByActivityTracker':
+    get:
+      tags:
+        - 'Blockchain'
+      summary: 'Get a User based on its Activity Tracker Id'
+      description: 'Select a user based on the Activity Tracker Id recieved from the API of that Activity Tracker'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'inputvalue'
+          in: 'query'
+          type: 'string'
+          pattern: '.+'
+          required: true
+      responses:
+        200:
+          description: 'Successful Operation'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/user'
+  
+  '/Steps':
+    get:
+      tags:
+        - 'Blockchain'
+      summary: 'Gets all steps from the Blockchain'
+      description: 'Returns an Array with all the Steps entry form the Blockchain'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Sucessful Operation'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/steps'
+            example:
+              - $class: org.bachelorarbeit.Steps
+                stepsId: '1'
+                date: 20190619
+                numberOfSteps: 6543
+                user: 'resource:org.bachelorarbeit.User#2'
+              - $class: org.bachelorarbeit.Steps
+                stepsId: '2'
+                date: 20190619
+                numberOfSteps: 12765
+                user: 'resource:org.bachelorarbeit.User#76'
+    
+  '/queries/selectStepsByUser':
+    get:
+      tags:
+        - 'Blockchain'
+      summary: 'Get Step of a User'
+      description: 'Gets all steps of a specific User'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'inputvalue'
+          in: 'query'
+          type: 'string'
+          pattern: 'resource:org.bachelorarbeit.User%23[0-9]+'
+          required: true
+      responses:
+        200:
+          description: 'Sucessful Operation'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/steps'
+            example:
+              - $class: org.bachelorarbeit.Steps
+                stepsId: '2'
+                date: 20190619
+                numberOfSteps: 6543
+                user: 'resource:org.bachelorarbeit.User#2'
+              - $class: org.bachelorarbeit.Steps
+                stepsId: '37'
+                date: 20190620
+                numberOfSteps: 12765
+                user: 'resource:org.bachelorarbeit.User#2'
+  
+  '/updateTokens':
+    post:
+      tags:
+        - 'Blockchain'
+      summary: 'update the access and refresh Token'
+      description: 'Updates the Acesstoken and the refreshtoken of a specific user' 
+      produces:
+        - 'application/json'
+      consumes:
+        - 'application/json'
+      parameters:
+        - name: 'body'
+          in: 'body'
+          schema:
+            $ref: '#/definitions/token'
+      responses:
+        200:
+          description: 'Sucessful Operation'
+          schema: 
+            $ref: '#/definitions/token'
+    
+    
+definitions:
+  setupDemo:
+    description: 'A transation Id to refer that the initiation of the demo worked successfully'
+    type: 'object'
+    required: 
+      - '$class'
+      - 'transactionId'
+    properties:
+      $class:
+        type: 'string'
+        example: 'org.bachelorarbeit.SetupDemo'
+      transactionId:
+        type: 'string'
+        example: '5a0e395d73c2ff514df8b029baf7ab4cc941c2e7b8e7ce59e4f7cbd4f5900f81'
+
+  user:
+    description: 'User from the Blockchain'
+    type: 'object'
+    required: 
+      - '$class'
+      - 'userId'
+      - 'firstName'
+      - 'lastName'
+      - 'email'
+    properties:
+      $class:
+        type: 'string'
+        example: 'org.bachelorarbeit.User'
+      userId:
+        type: 'string'
+        pattern: '[0-9]+'
+        example: '1'
+      firstName:
+        type: 'string'
+        example: 'Hans'
+      lastName:
+        type: 'string'
+        example: 'Muster'
+      email:
+        type: 'string'
+        pattern: 'email'
+        example: 'hans.muster@example.com'
+      userIdActivityTracker:
+        type: 'string'
+        example: '5X2CL3'
+      accessToken:
+        type: 'string'
+        example: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOoPymkQ8SjciLCJzdWIiOiI1WDJLTDQiLCJpc3MiOiJGaXRiZkQipoCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZO89J3YWN0IHdwcm8iLCJle.HAiOjE1NjEwNjY4OTksImlhdCI6MTU2MTAzODA5OX0.IkeuJt2ksOlJss3UXb2-KCJh5m7-iTQaWh6NH9E1mUs'
+      refreshToken:
+        type: 'string'
+        example: '3896fb8abc20609ur0bf5dcfa6a3e6bc2468a8707a1d171358cdde55F284dsa04'
+      sharedWith:
+        type: 'array'
+        items:
+          type: 'string'
+          pattern: 'resource:org.bachelorarbeit.User#[0-9]+'
+        example: ['resource:org.bachelorarbeit.User#23', 'resource:org.bachelorarbeit.User#35']
+      activityTracker:
+        type: 'string'
+        enum: [Fitbit, Polar]
+        
+  steps:
+    description: 'The steps from a user on a specific date'
+    type: 'object'
+    required: 
+      - '$class'
+      - 'stepsId'
+      - 'date'
+      - 'numberOfSteps'
+      - 'user'
+    properties:
+      $class:
+        type: 'string'
+        example: 'org.bachelorarbeit.Steps'
+      stepId:
+        type: 'string'
+        pattern: '[0-9]+'
+        example: '30'
+      date:
+        type: 'integer'
+        format: 'int32'
+        minimum: 19000101
+        multipleOf: 1
+        description: 'should have folowing format: "YYYYMMDD"'
+        example: 20190323
+      numberOfSteps:
+        type: 'integer'
+        format: 'int32'
+        minimum: 0
+        multipleOf: 1
+        example: 5687
+      user:
+        type: 'string'
+        pattern: 'resource:org.bachelorarbeit.User#[0-9]+'
+        example: 'org.bachelorarbeit.User#972'
+  
+  token:
+    description: 'the Object to update the Accesstoken and the Refreshtoken'
+    type: 'object'
+    required: 
+      - '$class'
+      - 'user'
+      - 'accessToken'
+      - 'refreshToken'
+    properties:
+      $class:
+        type: 'string'
+        example: 'org.bachelorarbeit.UpdateTokens'
+      user:
+        type: 'string'
+        pattern: 'resource:org.bachelorarbeit.User#[0-9]+'
+        example: 'resource:org.bachelorarbeit.User#12'
+      accessToken:
+        type: 'string'
+        example: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOoPymkQ8SjciLCJzdWIiOiI1WDJLTDQiLCJpc3MiOiJGaXRiZkQipoCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZO89J3YWN0IHdwcm8iLCJle.HAiOjE1NjEwNjY4OTksImlhdCI6MTU2MTAzODA5OX0.IkeuJt2ksOlJss3UXb2-KCJh5m7-iTQaWh6NH9E1mUs'
+      refreshToken:
+        type: 'string'
+        example: '3896fb8abc20609ur0bf5dcfa6a3e6bc2468a8707a1d171358cdde55F284dsa04'
+      transactionId:
+        type: 'string'
+        example: '5a0e395d73c2ff514df8b029baf7ab4cc941c2e7b8e7ce59e4f7cbd4f5900f81'
