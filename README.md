@@ -43,6 +43,7 @@ All this is tested with a Linux Ubuntu 18.04.2 LTS normal installation.
  	```
 
  **If you get any conflict** overwrite them with the option a (overwrite this and all others) or y (overwrite).
+ 
 4. Copy the files
 	1. navigate to the directory "/bachelorarbeit" if you not already in it
 	2. run the script "copyFiles.sh"
