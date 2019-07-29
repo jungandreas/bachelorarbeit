@@ -3,22 +3,22 @@ It shows you the full documentation of the application and the Blockchain.
 
 ## Blockchain
 The domain model of the data in the Blockchain is:<br>
-![Domain Model](documentation/images/domain_model.png)
+![Domain Model](images/domain_model.png)
 For the different Transactions it is defined what they need to fulfil the task.
 To update steps:<br>
-![UpdateSteps](documentation/images/transaction_updateSteps.png)
+![UpdateSteps](images/transaction_updateSteps.png)
 
 To get steps from a user:<br>
-![GetStepsFromUser](documentation/images/transaction_getStepsFromUser.png)
+![GetStepsFromUser](images/transaction_getStepsFromUser.png)
 
 To update the tokens:<br>
-![UpdateTokens](documentation/images/transaction_updateTokens.png)
+![UpdateTokens](images/transaction_updateTokens.png)
 
 To change the manufacturer of the Activity Tracker:<br>
-![UpdateActivityTracker](documentation/images/transaction_updateActivityTracker.png)
+![UpdateActivityTracker](images/transaction_updateActivityTracker.png)
 
 To add or remove with who I share my data:<br>
-![UpdateSteps](documentation/images/transaction_addSharedWith)
+![UpdateSteps](images/transaction_addSharedWith)
 
 To document the API there is a [.yaml file](doku_API_Blockchain.yaml).
 
