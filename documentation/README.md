@@ -6,6 +6,7 @@ The domain model of the data in the Blockchain is:<br>
 ![Domain Model](images/domain_model.png)
 
 For the different Transactions it is defined what they need to fulfil the task.
+
 To update steps:<br>
 ![UpdateSteps](images/transaction_updateSteps.png)
 
