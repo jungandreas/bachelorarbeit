@@ -5,7 +5,7 @@ It shows you the full documentation of the application and the Blockchain.
 The domain model of the data in the Blockchain is:<br>
 ![Domain Model](images/domain_model.png)
 
-For the different Transactions it is defined what they need to fulfil the task.
+For the different Transactions it is defined what parameters they need to fulfil the task.
 
 To update steps:<br>
 ![UpdateSteps](images/transaction_updateSteps.png)
