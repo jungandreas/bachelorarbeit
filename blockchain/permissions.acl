@@ -13,7 +13,12 @@
  */
 
 /**
- * Sample access control list.
+ * Permissions
+ * inspired by https://github.com/hyperledger/composer-sample-networks
+ */
+
+/**
+ * Access Control Lists
  */
 rule Default {
     description: "Allow all participants access to all resources"

@@ -1,19 +1,13 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+/**
+ * Model
+ * inspired by https://github.com/hyperledger/composer-sample-networks
  */
 
 namespace org.bachelorarbeit
 
+/**
+ * Participant for user information
+ */
 participant User identified by userId{
   o String userId
   o String firstName
@@ -26,49 +20,69 @@ participant User identified by userId{
   o ActivityTracker activityTracker
 }
 
+/**
+ * Enum for the exact word in class User in field activityTracker
+ */
 enum ActivityTracker{
   o Fitbit
   o Polar
 }
 
+/**
+ * Asset for all steps records linked with the user
+ */
 asset Steps identified by stepsId{
   o String stepsId
   o Integer date
-  o Integer numberOfSteps
+  o Integer steps
   --> User user
-}  
+} 
 
+/**
+ * Transaction to create a new step records or update the last one
+ */
 transaction UpdateSteps{
   o Integer []date
-  o Integer []newNumberOfSteps
+  o Integer []steps
   --> User user
 }
 
-transaction GetStepsFromUser {
-  o String userId
-}
-
+/**
+ * Transaction to update the access and refresh token from a user
+ */
 transaction UpdateTokens{
   o String accessToken
   o String refreshToken
   --> User user
 }
 
+/**
+ * Transaction to update the manufacture of an acitivty tracker
+ */
 transaction UpdateActivityTracker{
   o String userIdActivityTracker
   o ActivityTracker activityTracker
   --> User user
 }
 
+/**
+ * Transaction to add a new user to share data
+ */
 transaction AddSharedWith{
   o String sharedWith
   --> User user
 }
 
+/**
+ * Transaction to remove a user to share data
+ */
 transaction RemoveSharedWith{
   o String sharedWith
   --> User user
 }
 
+/**
+ * Transaction to create a demo with some test data
+ */
 transaction SetupDemo{
 }

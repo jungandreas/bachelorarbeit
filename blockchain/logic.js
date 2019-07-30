@@ -1,4 +1,9 @@
 /**
+ * Transactions
+ * inspired by https://github.com/hyperledger/composer-sample-networks
+ */
+
+/**
  * global constants
  */
 const factory = getFactory();

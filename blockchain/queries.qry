@@ -1,5 +1,6 @@
 /**
- * New query file
+ * Queries for the application
+ * inspired by https://github.com/hyperledger/composer-sample-networks
  */
 
 query selectStepsByUser {
@@ -14,11 +15,4 @@ query selectUserByUserIdActivityTracker {
   statement:
       SELECT org.bachelorarbeit.User
           WHERE (userIdActivityTracker == _$inputValue)
-}
-
-query selectUserByUserId {
-  description: "Select user based on his userid of the activity tracker"
-  statement:
-      SELECT org.bachelorarbeit.User
-          WHERE (userId == _$inputValue)
 }
