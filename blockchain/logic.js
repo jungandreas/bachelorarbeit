@@ -55,14 +55,14 @@ async function updateSteps(updateSteps) {
       // create new steps
       let steps = factory.newResource(NS, 'Steps', (stepsId + i + updated).toString());
       steps.date = updateSteps.date[i];
-      steps.steps = updateSteps.newNumberOfSteps[i];
+      steps.steps = updateSteps.steps[i];
       steps.user = updateSteps.user;
       // add new steps
       stepsArray.push(steps);
     }
     else {
-      if (updateSteps.newNumberOfSteps[i] > lastRecord.steps) {
-        lastRecord.steps = updateSteps.newNumberOfSteps[i];
+      if (updateSteps.steps[i] > lastRecord.steps) {
+        lastRecord.steps = updateSteps.steps[i];
         const assetRegistry = await getAssetRegistry(NS + '.Steps');
         await assetRegistry.update(lastRecord);
       }
