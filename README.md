@@ -2,8 +2,7 @@
 Improve technical interoperability for better comparison of activity tracker data from different manufacturers
 
 ## Introduction
-This are all the important files for the application, which is the result of the thesis, to be installed.
-With this files and the instructions in the Instruction section, it should be possible to install the Blockchain
+In this Repository are all the files, which are needed to set up the application. This application is the result of the bachelorthesis "Blockchain for Health Data". How the application will be installed is described in the Instruction section.
 
 ## Instructions
 All this is tested with a Linux Ubuntu 18.04.2 LTS normal installation.
@@ -20,16 +19,16 @@ All this is tested with a Linux Ubuntu 18.04.2 LTS normal installation.
 
 2. Insall all pre-requisites
 	1. navigate to the directory "/bachelorarbeit"
-	2. run the script "installpre-requisites.sh"
+	2. run the script "installPreRequisites.sh"
 	```
-		./installpre-requisites.sh
+		./installPreRequisites.sh
 	```
 	3. Logout and log back in, to finish the installation
 3. Install the development Enviroment
 	1. navigate to the directory "/bachelorarbeit" if you are not already in it
 	2. run the script "installDevelopmentEnviroment.sh" this will also start the installation of your first network
 	```
-		./installDevelopmentEnviroment.sh
+		./installDevelopmentEnvironment.sh
 	```
  	3. Now follow the steps through:
  	```
