@@ -1,0 +1,13 @@
+{
+  "name": "Bachelor Thesis Blockchain for Health Data",
+  "short_name": "Bachelor Thesis",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "icons":[{
+    "src": "images/logo.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
