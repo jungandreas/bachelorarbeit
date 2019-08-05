@@ -283,13 +283,13 @@ function getOnlyOneActivityperDatePolar(allActivities) {
  * creates the object which can be directly given to the updateSteps method
  * @param onlyOneActivityDate an Array with only the newest entries per Date
  * @param userId the id from the Blockchain to identify the user
- * @returns {{$class: string, date: Array, newNumberOfSteps: Array, user: string}} object to pass to the Blockchain to update the entries
+ * @returns {{$class: string, date: Array, steps: Array, user: string}} object to pass to the Blockchain to update the entries
  */
 function prepareStepsPushPolar(onlyOneActivityDate, userId) {
     let newSteps = {
         "$class": "org.bachelorarbeit.UpdateSteps",
         "date": [],
-        "newNumberOfSteps": [],
+        "steps": [],
         "user": "resource:org.bachelorarbeit.User#" + userId
     };
     onlyOneActivityDate.forEach(step => {
@@ -300,7 +300,7 @@ function prepareStepsPushPolar(onlyOneActivityDate, userId) {
         let valueSteps = step['active-steps'];
         // console.log("Date: " + dateString + "\nSteps: " + valueSteps);
         newSteps.date.push(parseInt(dateString));
-        newSteps.newNumberOfSteps.push(valueSteps);
+        newSteps.steps.push(valueSteps);
     });
     return newSteps;
 }
@@ -404,7 +404,7 @@ function fitbit(res, jsonRes, user) {
  * takes the json response from Fitbit and makes the right object to push to the Blockchain
  * @param stepJson the Json response from Fitbit
  * @param userId the UserId from the Blockchain
- * @returns {{$class: string, date: Array, newNumberOfSteps: Array, user: string}} an Object which can be directly passed to the updateSteps function
+ * @returns {{$class: string, date: Array, steps: Array, user: string}} an Object which can be directly passed to the updateSteps function
  */
 function prepareStepsPushFitbit(stepJson, userId) {
     // console.log(stepJson);
@@ -412,7 +412,7 @@ function prepareStepsPushFitbit(stepJson, userId) {
     let newSteps = {
         "$class": "org.bachelorarbeit.UpdateSteps",
         "date": [],
-        "newNumberOfSteps": [],
+        "steps": [],
         "user": "resource:org.bachelorarbeit.User#" + userId
     };
     let noStepsArray = [];
@@ -427,10 +427,10 @@ function prepareStepsPushFitbit(stepJson, userId) {
             for (let j = 0; j < noStepsArray.length; j++) {
                 let noStepDate = noStepsArray[j];
                 newSteps.date.push(noStepDate);
-                newSteps.newNumberOfSteps.push(0);
+                newSteps.steps.push(0);
             }
             newSteps.date.push(parseInt(dateString));
-            newSteps.newNumberOfSteps.push(valueSteps);
+            newSteps.steps.push(valueSteps);
             noStepsArray = [];
         }
         else {
@@ -565,7 +565,7 @@ function refreshTokenFitbit(refreshToken, userId) {
  * @param newSteps an Object which looks like: {
  *      "$class": "org.bachelorarbeit.UpdateSteps",
  *      "date": [],
- *      "newNumberOfSteps": [],
+ *      "steps": [],
  *      "user": "resource:org.bachelorarbeit.User#" + userId
  *      }
  * @returns {Promise<any>} A Promise which is resolved when the answer body is correct returned
@@ -750,7 +750,7 @@ function formatForFrontendGraphics(blockchainResponse) {
         let date = new Date(formatDateFromStringToISOString(blockchainEntry.date + ''));
         let data = {
             x: date,
-            y: blockchainEntry.numberOfSteps
+            y: blockchainEntry.steps
         };
         dataForFrontend.labels.push(date.toLocaleDateString('de-CH', dateFormate));
         dataForFrontend.ownData.push(data);
@@ -791,7 +791,7 @@ function getSharedData(userArray, forFrontend) {
                         let date = new Date(formatDateFromStringToISOString(blockchainEntry.date + ''));
                         let data = {
                             x: date,
-                            y: blockchainEntry.numberOfSteps
+                            y: blockchainEntry.steps
                         };
                         otherUser.data.push(data);
                         // console.log(otherUser);

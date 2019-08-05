@@ -55,14 +55,14 @@ async function updateSteps(updateSteps) {
       // create new steps
       let steps = factory.newResource(NS, 'Steps', (stepsId + i + updated).toString());
       steps.date = updateSteps.date[i];
-      steps.numberOfSteps = updateSteps.newNumberOfSteps[i];
+      steps.steps = updateSteps.steps[i];
       steps.user = updateSteps.user;
       // add new steps
       stepsArray.push(steps);
     }
     else {
-      if (updateSteps.newNumberOfSteps[i] > lastRecord.numberOfSteps) {
-        lastRecord.numberOfSteps = updateSteps.newNumberOfSteps[i];
+      if (updateSteps.steps[i] > lastRecord.steps) {
+        lastRecord.steps = updateSteps.steps[i];
         const assetRegistry = await getAssetRegistry(NS + '.Steps');
         await assetRegistry.update(lastRecord);
       }
@@ -203,13 +203,13 @@ async function setupDemo(setupDemo) {
   // create the steps  
   let steps = factory.newResource(NS, 'Steps', '1');
   steps.date = 20190526;
-  steps.numberOfSteps = 5000;
+  steps.steps = 5000;
   steps.user = factory.newRelationship(NS, 'User', '1');
 
   stepsArray.push(steps);
   steps = factory.newResource(NS, 'Steps', '2');
   steps.date = 20190619;
-  steps.numberOfSteps = 7000;
+  steps.steps = 7000;
   steps.user = factory.newRelationship(NS, 'User', '2');
 
   stepsArray.push(steps);
