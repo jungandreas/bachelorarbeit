@@ -17,7 +17,7 @@ All this is tested with a Linux Ubuntu 18.04.2 LTS normal installation.
 		git clone https://github.com/jungandreas/bachelorarbeit.git
 	```
 
-2. Insall all pre-requisites
+2. Install all pre-requisites
 	1. navigate to the directory "/bachelorarbeit"
 	2. run the script "installPreRequisites.sh"
 	```
