@@ -28,6 +28,7 @@ To add with who I share my data:<br>
 ![AddSharedWith](images/transaction_AddSharedWith.png)
 
 To remove with who I share my data:<br>
+![RemoveSharedWith](images/transaction_removeShareWith.png)
 ![RemoveSharedWith](images/transaction_RemoveSharedWith.png)
 
 To document the API there is a [.yaml file](doku_API_Blockchain.yaml).
