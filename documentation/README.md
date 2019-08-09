@@ -17,12 +17,19 @@ To get steps from a user:<br>
 
 To update the tokens:<br>
 ![UpdateTokens](images/transaction_updateTokens.png)
+![UpdateTokens](images/transaction_UpdateTokens.png)
 
 To change the manufacturer of the Activity Tracker:<br>
 ![UpdateActivityTracker](images/transaction_updateActivityTracker.png)
+![UpdateActivityTracker](images/transaction_UpdateActivityTracker.png)
 
-To add or remove with who I share my data:<br>
-![SharedWith](images/transaction_addSharedWith.png)
+To add with who I share my data:<br>
+![AddSharedWith](images/transaction_addSharedWith.png)
+![AddSharedWith](images/transaction_AddSharedWith.png)
+
+To remove with who I share my data:<br>
+![RemoveSharedWith](images/transaction_removeSharedWith.png)
+![RemoveSharedWith](images/transaction_RemoveSharedWith.png)
 
 To document the API there is a [.yaml file](doku_API_Blockchain.yaml).
 
