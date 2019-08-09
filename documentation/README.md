@@ -9,7 +9,8 @@ For the different Transactions it is defined what parameters they need to fulfil
 
 To update steps:<br>
 ![UpdateSteps](images/transaction_updateSteps.png)
-![UpdateSteps](images/transaction_UpdateSteps.png)
+![UpdateSteps](images/transaction_UpdateSteps1.png)
+![UpdateSteps](images/transaction_UpdateSteps2.png)
 
 To get steps from a user:<br>
 ![GetStepsFromUser](images/transaction_getStepsFromUser.png)
